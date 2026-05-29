@@ -827,6 +827,43 @@
   .ci-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
   .ci-val a:hover { color: var(--yellow); }
 
+  /* ── CONTACT MAP ── */
+  .contact-map { margin-top: 2rem; position: relative; z-index: 1; }
+  .contact-map-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .contact-map-label i { color: var(--yellow); font-size: 0.72rem; }
+  .contact-map-frame {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    border: 1px solid #222;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .contact-map-frame iframe {
+    width: 100%; height: 100%;
+    border: 0;
+    display: block;
+    filter: invert(100%) hue-rotate(180deg) brightness(0.85) contrast(0.92);
+  }
+  .contact-map-caption {
+    font-size: 0.7rem;
+    color: #2a2a2a;
+    margin-top: 0.5rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
   /* ── FORM ── */
   .contact-form { display: flex; flex-direction: column; gap: 1rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -1252,7 +1289,7 @@
           <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
           <div>
             <div class="ci-lbl">Service Area</div>
-            <div class="ci-val">Local &amp; Surrounding Areas<br>Contact us to confirm your location</div>
+            <div class="ci-val">Tampa Bay &amp; Surrounding Areas<br>Contact us to confirm your location</div>
           </div>
         </div>
         <div class="ci">
@@ -1262,6 +1299,21 @@
             <div class="ci-val">Mon &ndash; Sat &middot; Flexible Hours<br>Weekend work available</div>
           </div>
         </div>
+      </div>
+      <div class="contact-map">
+        <div class="contact-map-label">
+          <i class="fa-solid fa-location-dot"></i>
+          Tampa Bay Service Area
+        </div>
+        <div class="contact-map-frame">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-83.2%2C27.3%2C-81.9%2C28.2&amp;layer=mapnik"
+            loading="lazy"
+            allowfullscreen
+            title="Tampa Bay Service Area Map">
+          </iframe>
+        </div>
+        <p class="contact-map-caption">Serving Tampa Bay &amp; surrounding areas</p>
       </div>
     </div>
     <form
