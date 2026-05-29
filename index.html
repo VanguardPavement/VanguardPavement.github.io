@@ -46,9 +46,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 5%;
-    background: rgba(8,8,8,0.95);
-    border-bottom: 1px solid #1a1a1a;
-    backdrop-filter: blur(12px);
+    background: rgba(8,8,8,0.96);
+    border-bottom: 1px solid #181818;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
   .nav-logo {
     font-family: 'Oswald', sans-serif;
@@ -217,13 +218,18 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: linear-gradient(135deg, transparent 0%, rgba(245,196,0,0.04) 100%);
+    background-color: #0a0a0a;
+    background-image:
+      radial-gradient(rgba(245,196,0,0.07) 1px, transparent 1px),
+      linear-gradient(135deg, transparent 0%, rgba(245,196,0,0.04) 100%);
+    background-size: 28px 28px, 100% 100%;
   }
   .hero-right::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(245,196,0,0.12) 0%, transparent 65%);
+    background: radial-gradient(circle at 50% 50%, rgba(245,196,0,0.1) 0%, transparent 60%);
+    pointer-events: none;
   }
   /* Vertical accent line */
   .hero-right::after {
@@ -274,20 +280,23 @@
 
   .hero-tag {
     font-family: 'Oswald', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--yellow);
-    margin-bottom: 1.8rem;
-    display: flex;
+    margin-bottom: 2rem;
+    display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.7rem;
     opacity: 0;
     animation: riseIn 0.6s ease 0.1s forwards;
+    background: rgba(245,196,0,0.06);
+    border: 1px solid rgba(245,196,0,0.15);
+    padding: 0.4rem 0.9rem;
   }
   .hero-tag::before {
-    content: ''; width: 28px; height: 2px;
+    content: ''; width: 18px; height: 1px;
     background: var(--yellow); flex-shrink: 0;
   }
   h1 {
@@ -437,10 +446,18 @@
     line-height: 1;
     letter-spacing: 0.04em;
   }
+  .stat-icon {
+    color: var(--yellow);
+    font-size: 1.05rem;
+    opacity: 0.6;
+    margin-bottom: 0.85rem;
+    transition: opacity 0.3s;
+  }
+  .stat:hover .stat-icon { opacity: 1; }
   .stat-label {
     font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
     margin-top: 0.5rem;
@@ -450,14 +467,24 @@
   .section { padding: 6rem 7%; }
   .sec-label {
     font-family: 'Oswald', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
     color: var(--yellow);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
-  .sec-label::before { content: '— '; }
+  .sec-label::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--yellow);
+    flex-shrink: 0;
+  }
   .sec-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(2.4rem, 5vw, 4.2rem);
@@ -511,10 +538,10 @@
   .services-header-left { flex: 1; min-width: 260px; }
   .services-header-right {
     font-size: 0.88rem;
-    color: var(--muted);
-    max-width: 300px;
+    color: #666;
+    max-width: 320px;
     line-height: 1.85;
-    font-weight: 300;
+    font-weight: 400;
     text-align: right;
   }
 
@@ -538,15 +565,15 @@
   .svc::before {
     content: '';
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
+    top: 0; left: 0; right: 0;
+    height: 2px;
     background: var(--yellow);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.35s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
   }
-  .svc:hover { background: #131313; }
-  .svc:hover::before { transform: scaleY(1); }
+  .svc:hover { background: #121212; }
+  .svc:hover::before { transform: scaleX(1); }
 
   /* Featured card — spans 2 columns, horizontal layout */
   .svc-featured {
@@ -581,8 +608,22 @@
     color: #666;
   }
 
-  .svc-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
-  .svc-icon i { font-size: 26px; color: var(--yellow); }
+  .svc-icon {
+    margin-bottom: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px; height: 46px;
+    background: rgba(245,196,0,0.06);
+    border: 1px solid rgba(245,196,0,0.12);
+    clip-path: polygon(7px 0%, 100% 0%, calc(100% - 7px) 100%, 0% 100%);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .svc:hover .svc-icon {
+    background: rgba(245,196,0,0.12);
+    border-color: rgba(245,196,0,0.25);
+  }
+  .svc-icon i { font-size: 18px; color: var(--yellow); }
   .svc-name {
     font-family: 'Oswald', sans-serif;
     font-size: 1.05rem;
@@ -594,9 +635,9 @@
   }
   .svc-desc {
     font-size: 0.86rem;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.75;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.8;
   }
   .svc-num {
     position: absolute;
@@ -626,8 +667,8 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
-  #process .sec-label { color: rgba(0,0,0,0.4); }
-  #process .sec-label::before { content: '— '; }
+  #process .sec-label { color: rgba(0,0,0,0.5); }
+  #process .sec-label::before { background: rgba(0,0,0,0.3); }
   #process .sec-title { color: var(--black); }
   .process-band-sub {
     font-size: 0.88rem;
@@ -673,7 +714,8 @@
   }
   .process-step-desc {
     font-size: 0.84rem;
-    color: rgba(0,0,0,0.5);
+    font-weight: 400;
+    color: rgba(0,0,0,0.55);
     line-height: 1.75;
     max-width: 220px;
     margin: 0 auto;
@@ -839,24 +881,28 @@
   .fg { display: flex; flex-direction: column; gap: 0.35rem; }
   .fg label {
     font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .fg input, .fg select, .fg textarea {
-    background: #111;
-    border: 1px solid #222;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #282828;
     color: var(--text);
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     outline: none;
     width: 100%;
-    transition: border-color 0.2s;
+    transition: border-color 0.25s;
     appearance: none;
+    border-radius: 0;
   }
-  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--yellow); }
+  .fg input::placeholder, .fg textarea::placeholder { color: #333; }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-bottom-color: var(--yellow); }
+  .fg select { cursor: pointer; }
   .fg textarea { resize: vertical; min-height: 110px; }
   .submit-btn {
     font-family: 'Oswald', sans-serif;
@@ -892,8 +938,15 @@
   /* ── FOOTER ── */
   footer {
     background: var(--black);
-    border-top: 1px solid #141414;
     padding: 4rem 7% 2.5rem;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--yellow-dim) 25%, var(--yellow) 50%, var(--yellow-dim) 75%, transparent 100%);
   }
   .footer-grid {
     display: grid;
@@ -1204,18 +1257,22 @@
 <div class="stats-band">
   <div class="stats-grid">
     <div class="stat reveal">
+      <div class="stat-icon"><i class="fa-solid fa-road"></i></div>
       <div class="stat-num" data-target="500">0+</div>
       <div class="stat-label">Lots Striped</div>
     </div>
     <div class="stat reveal reveal-d1">
+      <div class="stat-icon"><i class="fa-solid fa-list-check"></i></div>
       <div class="stat-num">7</div>
       <div class="stat-label">Services Offered</div>
     </div>
     <div class="stat reveal reveal-d2">
+      <div class="stat-icon"><i class="fa-solid fa-wheelchair"></i></div>
       <div class="stat-num">ADA</div>
       <div class="stat-label">Compliant Markings</div>
     </div>
     <div class="stat reveal reveal-d3">
+      <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
       <div class="stat-num">Same</div>
       <div class="stat-label">Week Scheduling</div>
     </div>
