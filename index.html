@@ -853,7 +853,7 @@
     width: 100%; height: 100%;
     border: 0;
     display: block;
-    filter: invert(100%) hue-rotate(180deg) brightness(0.85) contrast(0.92);
+    filter: brightness(0.88) saturate(0.75) contrast(1.05);
   }
   .contact-map-caption {
     font-size: 0.7rem;
@@ -1307,10 +1307,11 @@
         </div>
         <div class="contact-map-frame">
           <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-83.2%2C27.3%2C-81.9%2C28.2&amp;layer=mapnik"
+            src="https://maps.google.com/maps?q=Tampa,FL&t=&z=11&ie=UTF8&iwloc=&output=embed"
             loading="lazy"
             allowfullscreen
-            title="Tampa Bay Service Area Map">
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Tampa, FL Service Area Map">
           </iframe>
         </div>
         <p class="contact-map-caption">Serving Tampa Bay &amp; surrounding areas</p>
