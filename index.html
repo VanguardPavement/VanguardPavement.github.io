@@ -1251,6 +1251,7 @@
     }
     .hero-right { display: none; }
     .hero-left { padding: 6rem 5% 9rem; }
+    .hero-logo-wrap img { height: 180px; }
     .stats-band { padding-top: calc(4rem + 50px); margin-top: -50px; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .services-bento { grid-template-columns: 1fr 1fr; }
@@ -1274,6 +1275,14 @@
     .services-header-right { text-align: left; max-width: 100%; }
     .process-band-header { flex-direction: column; align-items: flex-start; }
     .process-band-sub { text-align: left; }
+    /* New sections */
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .areas-layout { grid-template-columns: 1fr; }
+    .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .faq-cta-box { position: static; }
+    #services { padding: 5rem 5%; }
+    .section { padding: 5rem 5%; }
+    .testimonials-inner { padding: 5rem 5%; }
   }
   @media (max-width: 580px) {
     .nav-links { display: none; }
@@ -1282,7 +1291,9 @@
     .mobile-cta-bar { display: block; }
     body { padding-bottom: 54px; }
     .back-top { bottom: 5.5rem; }
-    .section { padding: 4rem 5%; }
+    .section { padding: 3.5rem 5%; }
+    #services { padding: 3.5rem 5%; }
+    .testimonials-inner { padding: 3.5rem 5%; }
     h1 { font-size: clamp(3rem, 12vw, 5rem); }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .services-bento { grid-template-columns: 1fr; }
@@ -1290,21 +1301,23 @@
     .svc-featured-icon { display: none; }
     .footer-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
-    #process { clip-path: none; margin: 0; padding: 5rem 5%; }
+    #process { clip-path: none; margin: 0; padding: 4rem 5%; }
     #hero { clip-path: none; }
-    .stats-band { margin-top: 0; padding-top: 5rem; }
+    .stats-band { margin-top: 0; padding-top: 4rem; }
     .why-grid { grid-template-columns: 1fr 1fr; }
-    .ba-grid { grid-template-columns: 1fr; }
     .areas-layout { grid-template-columns: 1fr; }
-    .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
     .city-grid { grid-template-columns: 1fr 1fr; }
-    .about-layout { grid-template-columns: 1fr !important; }
-    .about-stats-row { grid-template-columns: 1fr 1fr !important; }
+    .areas-map { height: 260px; }
   }
   @media (max-width: 480px) {
     .why-grid { grid-template-columns: 1fr; }
-    .about-stats-row { grid-template-columns: 1fr !important; }
+    .city-grid { grid-template-columns: 1fr; }
+    .section { padding: 3rem 5%; }
+    #services { padding: 3rem 5%; }
   }
+
+  .testimonials-inner { background: var(--black); padding: 6rem 7%; }
 
   /* ── SCROLL PROGRESS ── */
   #scrollProgress {
@@ -1872,7 +1885,7 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div style="background:var(--black);padding:6rem 7%;">
+  <div class="testimonials-inner">
     <p class="sec-label">What Clients Say</p>
     <h2 class="sec-title">Our Reputation</h2>
     <div class="reviews-grid">

@@ -136,6 +136,11 @@
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-form-col { order: -1; }
   }
+  @media (max-width: 480px) {
+    .lp-h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
+    .service-pills { gap: 0.35rem; }
+    .pill { font-size: 0.6rem; padding: 0.28rem 0.55rem; }
+  }
 
   /* Left — copy */
   .hero-copy {
@@ -719,6 +724,16 @@
   @media (max-width: 580px) {
     .mobile-cta { display: block; }
     body { padding-bottom: 54px; }
+    .top-bar { padding: 0.5rem 5%; gap: 0.3rem; }
+    .top-bar-msg { display: none; }
+    .services-section { padding: 3.5rem 5%; }
+    .trust-strip { padding: 1.2rem 5%; }
+    .trust-strip-grid { gap: 0.6rem 1.2rem; }
+    .proof-band { padding: 3rem 5%; }
+    .bottom-cta { padding: 3rem 5%; flex-direction: column; align-items: flex-start; }
+    .bottom-cta-right { align-items: flex-start; }
+    footer { padding: 2rem 5%; }
+    .footer-inner { flex-direction: column; gap: 0.5rem; }
   }
 
   /* ── REVEAL ── */
