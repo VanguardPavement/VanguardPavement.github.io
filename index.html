@@ -1277,9 +1277,10 @@
     .process-band-sub { text-align: left; }
     /* New sections */
     .why-grid { grid-template-columns: 1fr 1fr; }
-    .areas-layout { grid-template-columns: 1fr; }
-    .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
-    .faq-cta-box { position: static; }
+    .areas-layout { display: block; }
+    .areas-map { margin-top: 2.5rem; height: 300px; }
+    .faq-layout { display: block; }
+    .faq-cta-box { position: static; margin-bottom: 3rem; }
     #services { padding: 5rem 5%; }
     .section { padding: 5rem 5%; }
     .testimonials-inner { padding: 5rem 5%; }
@@ -1307,13 +1308,15 @@
     .why-grid { grid-template-columns: 1fr; }
     .why-card { padding: 1.8rem 1.4rem; }
     .why-card-num { display: none; }
-    .areas-layout { grid-template-columns: 1fr; }
-    .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .areas-layout { display: block; }
+    .areas-map { height: 240px; margin-top: 2rem; }
+    .faq-layout { display: block; }
+    .faq-cta-box { position: static; margin-bottom: 2.5rem; }
     .city-grid { grid-template-columns: 1fr 1fr; }
-    .areas-map { height: 260px; }
   }
   @media (max-width: 480px) {
     .city-grid { grid-template-columns: 1fr; }
+    .areas-map { display: none; }
     .section { padding: 3rem 5%; }
     #services { padding: 3rem 5%; }
   }
@@ -1459,13 +1462,14 @@
   .ba-detail { font-size: 0.82rem; color: #666; line-height: 1.6; }
 
   /* ── SERVICE AREAS ── */
-  #areas { background: var(--dark); }
+  #areas { background: var(--dark); overflow: hidden; }
   .areas-layout {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 4rem;
     align-items: start;
   }
+  .areas-layout > * { min-width: 0; }
   .city-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1515,13 +1519,14 @@
   }
 
   /* ── FAQ ── */
-  #faq { background: var(--black); }
+  #faq { background: var(--black); overflow: hidden; }
   .faq-layout {
     display: grid;
     grid-template-columns: 1fr 1.6fr;
     gap: 5rem;
     align-items: start;
   }
+  .faq-layout > * { min-width: 0; }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-bottom: 1px solid #181818; overflow: hidden; }
   .faq-q {
