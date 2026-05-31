@@ -1275,12 +1275,8 @@
     .services-header-right { text-align: left; max-width: 100%; }
     .process-band-header { flex-direction: column; align-items: flex-start; }
     .process-band-sub { text-align: left; }
-    /* New sections */
-    .why-grid { grid-template-columns: 1fr 1fr; }
-    .areas-layout { display: block; }
-    .areas-map { margin-top: 2.5rem; height: 300px; }
-    .faq-layout { display: block; }
-    .faq-cta-box { position: static; margin-bottom: 3rem; }
+    /* New sections — layouts are already mobile-first flex, only map height needed */
+    .areas-map { height: 300px; }
     #services { padding: 5rem 5%; }
     .section { padding: 5rem 5%; }
     .testimonials-inner { padding: 5rem 5%; }
@@ -1305,13 +1301,9 @@
     #process { clip-path: none; margin: 0; padding: 4rem 5%; }
     #hero { clip-path: none; }
     .stats-band { margin-top: 0; padding-top: 4rem; }
-    .why-grid { grid-template-columns: 1fr; }
-    .why-card { padding: 1.8rem 1.4rem; }
+    .why-card { padding: 1.6rem 1.4rem; }
     .why-card-num { display: none; }
-    .areas-layout { display: block; }
-    .areas-map { height: 240px; margin-top: 2rem; }
-    .faq-layout { display: block; }
-    .faq-cta-box { position: static; margin-bottom: 2.5rem; }
+    .areas-map { height: 240px; }
     .city-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 480px) {
@@ -1338,12 +1330,13 @@
   /* ── WHY VANGUARD ── */
   #why { background: var(--panel); }
   .why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 2px;
     background: #0a0a0a;
   }
   .why-card {
+    flex: 1 1 220px;
     background: var(--panel);
     padding: 2.4rem 1.8rem;
     position: relative;
@@ -1464,12 +1457,19 @@
   /* ── SERVICE AREAS ── */
   #areas { background: var(--dark); overflow: hidden; }
   .areas-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 4rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
-  .areas-layout > * { min-width: 0; }
+  @media (min-width: 900px) {
+    .areas-layout {
+      flex-direction: row;
+      gap: 4rem;
+      align-items: start;
+    }
+    .areas-copy { flex: 1; min-width: 0; }
+    .areas-map-col { flex: 1.4; min-width: 0; }
+  }
   .city-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1521,12 +1521,19 @@
   /* ── FAQ ── */
   #faq { background: var(--black); overflow: hidden; }
   .faq-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 5rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
-  .faq-layout > * { min-width: 0; }
+  @media (min-width: 900px) {
+    .faq-layout {
+      flex-direction: row;
+      gap: 5rem;
+      align-items: start;
+    }
+    .faq-cta-box { flex: 1; min-width: 0; position: sticky; top: 90px; }
+    .faq-questions-col { flex: 1.6; min-width: 0; }
+  }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-bottom: 1px solid #181818; overflow: hidden; }
   .faq-q {
@@ -1567,8 +1574,6 @@
     border: 1px solid var(--border);
     padding: 2.5rem;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-    position: sticky;
-    top: 90px;
   }
   .faq-cta-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -1975,7 +1980,7 @@
         <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Bradenton</div>
       </div>
     </div>
-    <div>
+    <div class="areas-map-col">
       <div class="areas-map">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d355680.1439697093!2d-82.59695843086476!3d27.994401857427497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2b782b3b9d1e1%3A0xa75f1389af96b463!2sTampa%20Bay%2C%20FL!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
@@ -2004,7 +2009,7 @@
       </div>
       <a href="tel:8635284936" class="btn-y" style="width:100%;text-align:center;display:block;box-sizing:border-box;">Call (863) 528-4936</a>
     </div>
-    <div>
+    <div class="faq-questions-col">
       <p class="sec-label">FAQ</p>
       <h2 class="sec-title" style="margin-bottom:2.5rem;">Common Questions</h2>
       <div class="faq-list">
