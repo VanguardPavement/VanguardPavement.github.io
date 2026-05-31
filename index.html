@@ -54,6 +54,18 @@
       "url": "https://vanguardpavement.github.io/",
       "name": "Vanguard Pavement Solutions",
       "description": "Parking lot striping, ADA markings, and seal coating in Tampa Bay, FL"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vanguardpavement.github.io/#faq",
+      "mainEntity": [
+        {"@type":"Question","name":"How long does parking lot striping take?","acceptedAnswer":{"@type":"Answer","text":"Most standard lots are completed in 2–4 hours. Larger properties may take a full day."}},
+        {"@type":"Question","name":"How long before I can drive on fresh lines?","acceptedAnswer":{"@type":"Answer","text":"Traffic paint lines are typically dry enough to drive on within 30 minutes in normal Florida weather."}},
+        {"@type":"Question","name":"Do you handle ADA compliance?","acceptedAnswer":{"@type":"Answer","text":"Yes. We install ADA-compliant handicap spaces, van-accessible stalls, and access aisles to current federal standards."}},
+        {"@type":"Question","name":"How much does parking lot striping cost?","acceptedAnswer":{"@type":"Answer","text":"Pricing depends on stall count and services required. We provide free written estimates with no pressure."}},
+        {"@type":"Question","name":"Do I need to close my parking lot for the job?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. We can work in sections or schedule for off-hours to minimize disruption."}},
+        {"@type":"Question","name":"What areas do you serve?","acceptedAnswer":{"@type":"Answer","text":"We serve Tampa, St. Petersburg, Clearwater, Brandon, Lakeland, Sarasota, Wesley Chapel, Plant City, Riverview, New Port Richey, and Bradenton."}}
+      ]
     }
   ]
 }
@@ -1041,8 +1053,8 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 2.5rem;
     margin-bottom: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid #141414;
@@ -1255,7 +1267,7 @@
     .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
     .contact-v { font-size: 40vw; }
     .form-row { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
     .trust-grid { justify-content: flex-start; }
     .services-header { flex-direction: column; align-items: flex-start; }
@@ -1281,10 +1293,373 @@
     #process { clip-path: none; margin: 0; padding: 5rem 5%; }
     #hero { clip-path: none; }
     .stats-band { margin-top: 0; padding-top: 5rem; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .areas-layout { grid-template-columns: 1fr; }
+    .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .city-grid { grid-template-columns: 1fr 1fr; }
+    .about-layout { grid-template-columns: 1fr !important; }
+    .about-stats-row { grid-template-columns: 1fr 1fr !important; }
   }
+  @media (max-width: 480px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .about-stats-row { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  #scrollProgress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--yellow);
+    z-index: 9999;
+    transition: width 0.08s linear;
+    pointer-events: none;
+  }
+
+  /* ── WHY VANGUARD ── */
+  #why { background: var(--panel); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: #0a0a0a;
+  }
+  .why-card {
+    background: var(--panel);
+    padding: 2.4rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .why-card:hover { background: #1a1a1a; }
+  .why-card-icon {
+    width: 50px; height: 50px;
+    background: rgba(245,196,0,0.07);
+    border: 1px solid rgba(245,196,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    margin-bottom: 1.4rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .why-card:hover .why-card-icon {
+    background: rgba(245,196,0,0.14);
+    border-color: rgba(245,196,0,0.3);
+  }
+  .why-card-icon i { font-size: 20px; color: var(--yellow); }
+  .why-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+  .why-card-desc { font-size: 0.86rem; color: #666; line-height: 1.8; }
+  .why-card-num {
+    position: absolute;
+    bottom: 0.8rem; right: 1.2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ── BEFORE / AFTER ── */
+  #gallery { background: var(--black); }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: #141414;
+  }
+  .ba-card { position: relative; overflow: hidden; }
+  .ba-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    height: 200px;
+  }
+  .ba-before, .ba-after {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ba-before {
+    background: #0c0c0c;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0, transparent 30px,
+      rgba(255,255,255,0.015) 30px, rgba(255,255,255,0.015) 31px
+    );
+  }
+  .ba-after {
+    background: #0c0c0c;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0, transparent 30px,
+      rgba(245,196,0,0.08) 30px, rgba(245,196,0,0.08) 34px
+    );
+  }
+  .ba-before-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+  }
+  .ba-line { height: 3px; flex: 1; }
+  .ba-line.faded { background: rgba(255,255,255,0.12); }
+  .ba-line.fresh { background: rgba(245,196,0,0.85); }
+  .ba-lbl {
+    position: absolute;
+    bottom: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+  }
+  .ba-before .ba-lbl { background: rgba(0,0,0,0.5); color: #555; right: 6px; }
+  .ba-after .ba-lbl { background: rgba(245,196,0,0.15); color: var(--yellow); left: 6px; }
+  .ba-info { padding: 1.4rem 1.5rem; background: #0e0e0e; }
+  .ba-type {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.3rem;
+  }
+  .ba-detail { font-size: 0.82rem; color: #666; line-height: 1.6; }
+
+  /* ── SERVICE AREAS ── */
+  #areas { background: var(--dark); }
+  .areas-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .city-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #1a1a1a;
+    margin-top: 2rem;
+  }
+  .city-item {
+    background: var(--dark);
+    padding: 0.8rem 1.1rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.2s, background 0.2s;
+  }
+  .city-item:hover { color: var(--yellow); background: #1a1a1a; }
+  .city-item i { color: var(--yellow); font-size: 0.55rem; }
+  .areas-map {
+    width: 100%;
+    height: 380px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+  }
+  .areas-map iframe {
+    width: 100%; height: 100%;
+    border: none;
+    filter: invert(90%) hue-rotate(170deg) saturate(0.7) brightness(0.85);
+  }
+  .map-overlay-label {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(8,8,8,0.88);
+    padding: 6px 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── FAQ ── */
+  #faq { background: var(--black); }
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid #181818; overflow: hidden; }
+  .faq-q {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--white);
+    padding: 1.3rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: color 0.2s;
+    user-select: none;
+  }
+  .faq-q:hover, .faq-q.open { color: var(--yellow); }
+  .faq-q-icon {
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: transform 0.3s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .faq-q.open .faq-q-icon { transform: rotate(45deg); color: var(--yellow); }
+  .faq-a {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.85;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding-bottom 0.3s;
+  }
+  .faq-a.open { max-height: 300px; padding-bottom: 1.3rem; }
+  .faq-cta-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    position: sticky;
+    top: 90px;
+  }
+  .faq-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .faq-cta-title em { font-style: normal; color: var(--yellow); }
+  .faq-cta-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.8rem; }
+  .faq-cta-items { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .faq-cta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .faq-cta-item i { color: var(--yellow); font-size: 0.7rem; }
+
+  /* ── ABOUT PAGE STYLES ── */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #1a1a1a;
+    margin-top: 3rem;
+  }
+  .about-stat {
+    background: var(--panel);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+  }
+  .about-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--yellow);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .about-stat-lbl {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+  .about-deco-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    position: sticky;
+    top: 90px;
+  }
+  .about-deco-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .about-deco-title em { font-style: normal; color: var(--yellow); }
+  .about-value-list { display: flex; flex-direction: column; gap: 0; }
+  .about-value-item {
+    border-bottom: 1px solid #181818;
+    padding: 1.1rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .about-value-icon {
+    width: 32px; height: 32px;
+    background: rgba(245,196,0,0.07);
+    border: 1px solid rgba(245,196,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+    margin-top: 2px;
+  }
+  .about-value-icon i { font-size: 12px; color: var(--yellow); }
+  .about-value-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .about-value-desc { font-size: 0.8rem; color: #666; line-height: 1.7; }
 </style>
 </head>
 <body>
+
+<div id="scrollProgress"></div>
 
 <!-- MOBILE STICKY CTA -->
 <a href="tel:8635284936" class="mobile-cta-bar">
@@ -1298,10 +1673,13 @@
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a href="#" class="nav-logo">Vanguard Pavement Solutions</a>
+  <a href="index.html" class="nav-logo">Vanguard Pavement Solutions</a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#areas">Areas</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-btn">Free Quote</a>
@@ -1313,7 +1691,10 @@
 <!-- MOBILE NAV DROPDOWN -->
 <ul class="mobile-nav" id="mobileNav">
   <li><a href="#services">Services</a></li>
-  <li><a href="#process">Process</a></li>
+  <li><a href="#why">Why Us</a></li>
+  <li><a href="#areas">Areas</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="about.html">About</a></li>
   <li><a href="#contact">Contact</a></li>
   <li><a href="tel:8635284936">(863) 528-4936</a></li>
 </ul>
@@ -1520,6 +1901,208 @@
   </div>
 </section>
 
+<!-- WHY VANGUARD -->
+<section id="why" class="section">
+  <p class="sec-label">The Difference</p>
+  <h2 class="sec-title">Why Property Managers Choose Vanguard</h2>
+  <p class="sec-sub">We're built for commercial work. Licensed, insured, and equipped with professional equipment that delivers results built to last under Florida sun.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-card-icon"><i class="fa-solid fa-calendar-week"></i></div>
+      <div class="why-card-title">Same-Week Scheduling</div>
+      <p class="why-card-desc">Most competitors book 2–3 weeks out. We keep capacity available so you can get your lot done this week, not next month.</p>
+      <div class="why-card-num">01</div>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-card-icon"><i class="fa-solid fa-file-shield"></i></div>
+      <div class="why-card-title">Licensed &amp; Insured</div>
+      <p class="why-card-desc">Fully licensed for Florida commercial work with liability coverage. Your property and your tenants are protected on every job.</p>
+      <div class="why-card-num">02</div>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-card-icon"><i class="fa-solid fa-wheelchair"></i></div>
+      <div class="why-card-title">ADA-Compliant Work</div>
+      <p class="why-card-desc">Every ADA marking meets current federal standards. No second-guessing, no re-dos — clean, compliant work the first time.</p>
+      <div class="why-card-num">03</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-card-icon"><i class="fa-solid fa-award"></i></div>
+      <div class="why-card-title">Satisfaction Guaranteed</div>
+      <p class="why-card-desc">We stand behind every line. If something isn't right after the job, we come back and make it right — no arguments, no extra charge.</p>
+      <div class="why-card-num">04</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="gallery" class="section" style="background:var(--black);">
+  <p class="sec-label">Our Work</p>
+  <h2 class="sec-title">Before &amp; After</h2>
+  <p class="sec-sub">Clear, sharp lines make your property look professional and keep parking organized. Here's the Vanguard difference.</p>
+  <div class="ba-grid">
+    <div class="ba-card reveal">
+      <div class="ba-panels">
+        <div class="ba-before">
+          <div class="ba-before-lines">
+            <div class="ba-line faded"></div>
+            <div class="ba-line faded" style="opacity:0.5"></div>
+            <div class="ba-line faded" style="opacity:0.2"></div>
+            <div class="ba-line faded" style="opacity:0.6"></div>
+          </div>
+          <span class="ba-lbl">Before</span>
+        </div>
+        <div class="ba-after">
+          <div class="ba-before-lines">
+            <div class="ba-line fresh"></div>
+            <div class="ba-line fresh"></div>
+            <div class="ba-line fresh"></div>
+            <div class="ba-line fresh"></div>
+          </div>
+          <span class="ba-lbl">After</span>
+        </div>
+      </div>
+      <div class="ba-info">
+        <div class="ba-type">Parking Lot Re-Striping</div>
+        <p class="ba-detail">Faded stall lines restored to full visibility. Clean, even spacing — maximum lot capacity recovered.</p>
+      </div>
+    </div>
+    <div class="ba-card reveal reveal-d1">
+      <div class="ba-panels">
+        <div class="ba-before" style="flex-direction:column;gap:12px;">
+          <div style="width:50px;height:50px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="fa-solid fa-wheelchair" style="font-size:18px;color:rgba(255,255,255,0.1);"></i>
+          </div>
+          <div style="width:60%;height:2px;background:rgba(255,255,255,0.06);margin:0 auto;"></div>
+          <span class="ba-lbl">Before</span>
+        </div>
+        <div class="ba-after" style="flex-direction:column;gap:12px;">
+          <div style="width:50px;height:50px;background:rgba(245,196,0,0.12);border:1px solid rgba(245,196,0,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+            <i class="fa-solid fa-wheelchair" style="font-size:18px;color:var(--yellow);"></i>
+          </div>
+          <div style="width:60%;height:3px;background:rgba(245,196,0,0.8);margin:0 auto;"></div>
+          <span class="ba-lbl">After</span>
+        </div>
+      </div>
+      <div class="ba-info">
+        <div class="ba-type">ADA Compliance Upgrade</div>
+        <p class="ba-detail">Non-compliant access aisle replaced with ADA-sized, clearly-marked space and van-accessible signage to current federal standards.</p>
+      </div>
+    </div>
+    <div class="ba-card reveal reveal-d2">
+      <div class="ba-panels">
+        <div class="ba-before" style="background:#080808;">
+          <div style="width:80%;height:80%;background:rgba(60,60,60,0.2);border:1px solid rgba(255,255,255,0.04);position:relative;">
+            <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:3px;height:30%;background:rgba(255,255,255,0.07);"></div>
+          </div>
+          <span class="ba-lbl">Before</span>
+        </div>
+        <div class="ba-after" style="background:#080808;">
+          <div style="width:80%;height:80%;background:rgba(40,40,40,0.6);border:1px solid rgba(245,196,0,0.15);position:relative;box-shadow:0 0 20px rgba(245,196,0,0.06);">
+            <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:4px;height:35%;background:rgba(245,196,0,0.7);"></div>
+          </div>
+          <span class="ba-lbl">After</span>
+        </div>
+      </div>
+      <div class="ba-info">
+        <div class="ba-type">Seal Coating</div>
+        <p class="ba-detail">Cracked, weathered asphalt sealed and protected. Surface restored, UV damage halted, lifespan extended by years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section id="areas" class="section">
+  <div class="areas-layout">
+    <div class="areas-copy">
+      <p class="sec-label">Where We Work</p>
+      <h2 class="sec-title">Service Areas</h2>
+      <p class="sec-sub">Based in Tampa Bay, we serve commercial properties across the greater Tampa Bay area and Central Florida. Not sure if we cover your location? Call us — we travel for the right job.</p>
+      <div class="city-grid">
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Tampa</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>St. Petersburg</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Clearwater</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Brandon</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Lakeland</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Sarasota</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Wesley Chapel</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Land O' Lakes</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Plant City</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Riverview</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>New Port Richey</div>
+        <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Bradenton</div>
+      </div>
+    </div>
+    <div>
+      <div class="areas-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d355680.1439697093!2d-82.59695843086476!3d27.994401857427497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2b782b3b9d1e1%3A0xa75f1389af96b463!2sTampa%20Bay%2C%20FL!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Vanguard Pavement Solutions Service Area — Tampa Bay, FL">
+        </iframe>
+        <div class="map-overlay-label">Tampa Bay Service Area</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="background:var(--black);">
+  <div class="faq-layout">
+    <div class="faq-cta-box reveal">
+      <div class="faq-cta-title">STILL HAVE<br><em>QUESTIONS?</em></div>
+      <p class="faq-cta-desc">Call or text us any time. We're happy to walk you through your project before you commit to anything.</p>
+      <div class="faq-cta-items">
+        <div class="faq-cta-item"><i class="fa-solid fa-check"></i>Free, no-obligation estimates</div>
+        <div class="faq-cta-item"><i class="fa-solid fa-check"></i>Same-week scheduling</div>
+        <div class="faq-cta-item"><i class="fa-solid fa-check"></i>Licensed &amp; insured</div>
+        <div class="faq-cta-item"><i class="fa-solid fa-check"></i>ADA-compliant work</div>
+      </div>
+      <a href="tel:8635284936" class="btn-y" style="width:100%;text-align:center;display:block;box-sizing:border-box;">Call (863) 528-4936</a>
+    </div>
+    <div>
+      <p class="sec-label">FAQ</p>
+      <h2 class="sec-title" style="margin-bottom:2.5rem;">Common Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span>How long does parking lot striping take?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Most standard lots are completed in 2–4 hours. Larger properties or those requiring layout changes may take a full day. We'll give you a firm time estimate when we quote your job, and we always work around your schedule to minimize disruption.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How long before I can drive on fresh lines?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Traffic paint lines are typically dry enough to drive on within 30 minutes in normal Florida weather. We'll give you a clear all-clear time when the job is done. Seal coating requires a longer cure — usually 24–48 hours depending on conditions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do you handle ADA compliance?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Yes. We install ADA-compliant handicap spaces, van-accessible stalls, access aisles, and all required markings to current federal ADA Standards for Accessible Design. If your property is out of compliance we can assess and correct it.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How much does parking lot striping cost?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Pricing depends on the number of stalls, services required (new layout vs. re-stripe), and lot access. A typical commercial re-stripe is very affordable. We provide free, written estimates with no pressure — contact us and we'll quote your specific lot.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do I need to close my parking lot for the job?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Not necessarily. We can often work in sections to keep part of your lot open, or schedule for early mornings, evenings, or weekends when traffic is minimal. We'll plan the approach around your business needs.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do you stripe over existing faded lines?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Yes — re-striping over existing faded lines is one of our most common services. We use high-quality traffic paint that restores lines to full visibility with excellent durability under Florida's sun and rain.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>What areas do you serve?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">We primarily serve Tampa, St. Petersburg, Clearwater, Brandon, Lakeland, Sarasota, Wesley Chapel, Plant City, Riverview, New Port Richey, Bradenton, and the broader Tampa Bay and Central Florida region. Not sure if we cover your location? Just call — we travel for the right project.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How do I prepare my lot before you arrive?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
+          <div class="faq-a">Just make sure the area is clear of vehicles before we arrive. We handle all the prep, layout, and cleanup. For seal coating jobs the surface should be clean and dry — we'll advise on any specific steps when we schedule your job.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="hazard"></div>
 
 <!-- CONTACT -->
@@ -1632,43 +2215,82 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="footer-logo">Vanguard Pavement Solutions</a>
-      <p class="footer-brand-desc">Professional pavement marking and seal coating for parking lots, roads, and commercial facilities. Sharp lines, lasting results, every time.</p>
+      <a href="index.html" class="footer-logo">Vanguard Pavement Solutions</a>
+      <p class="footer-brand-desc">Professional pavement marking and seal coating for parking lots and commercial facilities across Tampa Bay. Sharp lines, lasting results, every time.</p>
+      <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:8635284936">(863) 528-4936</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:brigido.baltazar@gmail.com">brigido.baltazar@gmail.com</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon&ndash;Sat &middot; Flexible Hours</span></div>
+      </div>
     </div>
     <div>
-      <p class="footer-col-title">Navigation</p>
+      <p class="footer-col-title">Services</p>
       <ul class="footer-col-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#process">Process</a></li>
+        <li><a href="#services">Parking Lot Striping</a></li>
+        <li><a href="#services">Re-Striping</a></li>
+        <li><a href="#services">ADA Markings</a></li>
+        <li><a href="#services">Crosswalks</a></li>
+        <li><a href="#services">Seal Coating</a></li>
+        <li><a href="#services">Custom Markings</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Company</p>
+      <ul class="footer-col-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#why">Why Vanguard</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#areas">Service Areas</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Get a Quote</a></li>
       </ul>
     </div>
     <div>
-      <p class="footer-col-title">Contact</p>
-      <div class="footer-contact-item">
-        <i class="fa-solid fa-phone"></i>
-        <a href="tel:8635284936">(863) 528-4936</a>
-      </div>
-      <div class="footer-contact-item">
-        <i class="fa-solid fa-envelope"></i>
-        <a href="mailto:brigido.baltazar@gmail.com">brigido.baltazar@gmail.com</a>
-      </div>
-      <div class="footer-contact-item">
-        <i class="fa-solid fa-clock"></i>
-        <span>Mon&ndash;Sat &middot; Flexible Hours<br>Weekend work available</span>
-      </div>
+      <p class="footer-col-title">Areas We Serve</p>
+      <ul class="footer-col-links">
+        <li><a href="#areas">Tampa</a></li>
+        <li><a href="#areas">St. Petersburg</a></li>
+        <li><a href="#areas">Clearwater</a></li>
+        <li><a href="#areas">Brandon &amp; Riverview</a></li>
+        <li><a href="#areas">Lakeland</a></li>
+        <li><a href="#areas">Wesley Chapel</a></li>
+        <li><a href="#areas">Sarasota &amp; Bradenton</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2025 Vanguard Pavement Solutions. All rights reserved.</p>
+    <p class="footer-copy">&copy; 2025 Vanguard Pavement Solutions &mdash; Tampa Bay, FL. All rights reserved.</p>
     <ul class="footer-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="quote.html">Get a Quote</a></li>
     </ul>
   </div>
 </footer>
 
 <script>
+// Scroll progress bar
+const scrollProg = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  scrollProg.style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const ans = item.querySelector('.faq-a');
+    const isOpen = q.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(oq => {
+      oq.classList.remove('open');
+      oq.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
+    });
+    if (!isOpen) { q.classList.add('open'); ans.classList.add('open'); }
+  });
+});
+
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
