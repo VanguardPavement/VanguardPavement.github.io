@@ -77,10 +77,13 @@
     backdrop-filter: blur(16px);
   }
   .nav-logo {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--yellow); text-decoration: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo img {
+    height: 44px;
+    width: auto;
   }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
@@ -380,10 +383,13 @@
     padding-bottom: 3rem; border-bottom: 1px solid #141414;
   }
   .footer-logo {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.95rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--yellow); text-decoration: none; display: block; margin-bottom: 1rem;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .footer-logo img {
+    height: 80px;
+    width: auto;
   }
   .footer-brand-desc { font-size: 0.82rem; color: #444; line-height: 1.8; margin-bottom: 1.5rem; }
   .footer-col-title {
@@ -500,7 +506,7 @@
 </a>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">Vanguard Pavement Solutions</a>
+  <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Vanguard Pavement Solutions"></a>
   <ul class="nav-links">
     <li><a href="index.html#services">Services</a></li>
     <li><a href="index.html#why">Why Us</a></li>
@@ -692,7 +698,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="index.html" class="footer-logo">Vanguard Pavement Solutions</a>
+      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Vanguard Pavement Solutions"></a>
       <p class="footer-brand-desc">Professional pavement marking and seal coating for parking lots and commercial facilities across Tampa Bay. Sharp lines, lasting results, every time.</p>
       <div>
         <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:8635284936">(863) 528-4936</a></div>
