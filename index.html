@@ -318,6 +318,21 @@
     filter: drop-shadow(0 0 50px rgba(245,196,0,0.18));
   }
 
+  /* Decorative road symbol icons */
+  .road-symbols {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .rs {
+    position: absolute;
+    color: var(--yellow);
+    opacity: 0.05;
+    line-height: 1;
+  }
+
   /* Animated road dash line */
   .road-anim {
     position: absolute;
@@ -325,8 +340,8 @@
     left: calc(60% - 4px);
     width: 6px;
     overflow: hidden;
-    opacity: 0.07;
-    z-index: 1;
+    opacity: 0.18;
+    z-index: 2;
   }
   .road-anim::before {
     content: '';
@@ -1744,6 +1759,16 @@
 <section id="hero">
   <div class="hero-spotlight"></div>
   <div class="road-anim"></div>
+  <!-- Decorative pavement marking symbols -->
+  <div class="road-symbols" aria-hidden="true">
+    <i class="rs fa-solid fa-arrow-up"        style="font-size:7rem;  top:10%;   left:4%;   transform:rotate(-8deg)"></i>
+    <i class="rs fa-solid fa-arrow-turn-right" style="font-size:5rem;  top:58%;   left:16%;  transform:rotate(12deg)"></i>
+    <i class="rs fa-solid fa-wheelchair"       style="font-size:5.5rem;bottom:12%;left:6%;   transform:rotate(5deg)"></i>
+    <i class="rs fa-solid fa-person-walking"   style="font-size:4.5rem;top:32%;   left:36%;  transform:rotate(-10deg)"></i>
+    <i class="rs fa-solid fa-square-parking"   style="font-size:5rem;  top:18%;   right:8%;  transform:rotate(8deg)"></i>
+    <i class="rs fa-solid fa-road"             style="font-size:4.5rem;top:52%;   right:18%; transform:rotate(-5deg)"></i>
+    <i class="rs fa-solid fa-car"              style="font-size:4rem;  bottom:18%;right:12%; transform:rotate(6deg)"></i>
+  </div>
   <div class="hero-left">
     <p class="hero-tag">Tampa Bay &amp; Central Florida · Licensed &amp; Insured</p>
     <h1>STRIPE.<br><em>MARK.</em><br>DONE RIGHT.</h1>
