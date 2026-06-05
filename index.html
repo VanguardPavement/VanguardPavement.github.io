@@ -1641,6 +1641,61 @@
     margin-bottom: 0.2rem;
   }
   .about-value-desc { font-size: 0.8rem; color: #666; line-height: 1.7; }
+
+  /* ── MARQUEE TICKER ── */
+  .marquee-strip {
+    background: var(--yellow);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    padding: 0.72rem 0;
+  }
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: marquee-scroll 30s linear infinite;
+    will-change: transform;
+  }
+  .marquee-strip:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+  .marquee-sep {
+    color: rgba(0,0,0,0.22);
+    font-size: 0.35rem;
+    flex-shrink: 0;
+  }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── HERO CURSOR SPOTLIGHT ── */
+  .hero-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      circle 700px at var(--hx, -200%) var(--hy, 50%),
+      rgba(245,196,0,0.065) 0%,
+      transparent 65%
+    );
+  }
+
+  /* ── NAV SCROLLED STATE ── */
+  nav.scrolled {
+    border-bottom-color: rgba(245,196,0,0.18);
+    background: rgba(8,8,8,0.99);
+  }
 </style>
 </head>
 <body>
@@ -1687,6 +1742,7 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-spotlight"></div>
   <div class="road-anim"></div>
   <div class="hero-left">
     <p class="hero-tag">Tampa Bay &amp; Central Florida · Licensed &amp; Insured</p>
@@ -1745,6 +1801,32 @@
     <div class="trust-item"><i class="fa-solid fa-calendar-check"></i> Same-Week Scheduling</div>
     <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Quality Guaranteed</div>
     <div class="trust-item"><i class="fa-solid fa-map-location-dot"></i> Locally Owned &amp; Operated</div>
+  </div>
+</div>
+
+<!-- MARQUEE TICKER -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Parking Lot Striping</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>ADA Compliant Markings</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Same-Week Scheduling</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Seal Coating</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Tampa Bay &amp; Central FL</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Free Estimates</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Licensed &amp; Insured</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Re-Striping</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Crosswalk Markings</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Directional Arrows</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Parking Lot Striping</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>ADA Compliant Markings</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Same-Week Scheduling</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Seal Coating</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Tampa Bay &amp; Central FL</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Free Estimates</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Licensed &amp; Insured</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Re-Striping</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Crosswalk Markings</span><i class="fa-solid fa-diamond marquee-sep"></i>
+    <span>Directional Arrows</span><i class="fa-solid fa-diamond marquee-sep"></i>
   </div>
 </div>
 
@@ -2163,12 +2245,27 @@
 </footer>
 
 <script>
-// Scroll progress bar
+// Scroll progress bar + nav scrolled state
 const scrollProg = document.getElementById('scrollProgress');
+const mainNav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   scrollProg.style.width = Math.min(pct, 100) + '%';
+  mainNav.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
+
+// Hero cursor spotlight
+const heroEl = document.getElementById('hero');
+if (heroEl) {
+  heroEl.addEventListener('mousemove', (e) => {
+    const rect = heroEl.getBoundingClientRect();
+    heroEl.style.setProperty('--hx', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+    heroEl.style.setProperty('--hy', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
+  });
+  heroEl.addEventListener('mouseleave', () => {
+    heroEl.style.setProperty('--hx', '-200%');
+  });
+}
 
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(q => {
