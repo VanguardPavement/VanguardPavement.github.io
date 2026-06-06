@@ -249,7 +249,7 @@
     min-height: 100vh;
     padding-top: 96px;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr;
     position: relative;
     overflow: hidden;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 90px), 0 100%);
@@ -1218,9 +1218,6 @@
   .reveal-d4 { transition-delay: 0.4s; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    #hero { grid-template-columns: 1fr 1fr; }
-  }
   @media (max-width: 860px) {
     #hero {
       grid-template-columns: 1fr;
@@ -1783,11 +1780,6 @@
         <span class="hero-phone-label">Call or Text</span>
         <a href="tel:8635284936">(863) 528-4936</a>
       </div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-logo-wrap">
-      <img alt="Vanguard Pavement Solutions logo" src="images/logo.png">
     </div>
   </div>
 </section>
