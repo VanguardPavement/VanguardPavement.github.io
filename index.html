@@ -2155,8 +2155,12 @@
     <form
       class="contact-form reveal"
       method="POST"
-      action="https://formspree.io/f/xnjolrnv"
+      action="/"
+      name="contact"
+      netlify
+      data-netlify="true"
       id="quoteForm">
+      <input type="hidden" name="form-name" value="contact">
       <div class="form-row">
         <div class="fg">
           <label for="fname">First Name</label>
@@ -2351,10 +2355,10 @@ document.getElementById('quoteForm').addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.textContent = 'Sending…';
   try {
-    const res = await fetch(e.target.action, {
+    const res = await fetch('/', {
       method: 'POST',
-      body: new FormData(e.target),
-      headers: { Accept: 'application/json' }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(e.target)).toString()
     });
     if (res.ok) {
       e.target.reset();

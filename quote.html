@@ -802,7 +802,8 @@
         <p class="form-card-sub">Fill out the form and we'll respond within a few hours — usually same day.</p>
       </div>
 
-      <form class="lp-form" method="POST" action="https://formspree.io/f/xnjolrnv" id="lpForm">
+      <form class="lp-form" method="POST" action="/quote.html" name="quote" netlify data-netlify="true" id="lpForm">
+        <input type="hidden" name="form-name" value="quote">
         <div class="form-row">
           <div class="fg">
             <label for="lp-fname">First Name</label>
@@ -979,10 +980,10 @@ document.getElementById('lpForm').addEventListener('submit', async e => {
   btn.disabled = true;
   btn.textContent = 'Sending…';
   try {
-    const res = await fetch(e.target.action, {
+    const res = await fetch('/quote.html', {
       method: 'POST',
-      body: new FormData(e.target),
-      headers: { Accept: 'application/json' }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(e.target)).toString()
     });
     if (res.ok) {
       e.target.reset();
