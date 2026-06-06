@@ -2377,11 +2377,30 @@ document.getElementById('quoteForm').addEventListener('submit', async (e) => {
 <script type="module">
 import { animate, stagger } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
 
-// Hero tag fades up
-animate('.hero-tag',
-  { opacity: [0, 1], y: [16, 0] },
-  { duration: 0.5, easing: [0.25, 0.1, 0.25, 1] }
-);
+// Paint sprayer effect — split tag line into chars, spray left-to-right
+const heroTag = document.querySelector('.hero-tag');
+if (heroTag) {
+  const text = heroTag.textContent;
+  heroTag.innerHTML = text.split('').map(char =>
+    `<span class="spray-char" style="display:inline-block;opacity:0;white-space:pre">${char}</span>`
+  ).join('');
+  heroTag.style.opacity = '1';
+
+  animate('.spray-char',
+    {
+      opacity: [0, 1],
+      scale:   [1.6, 1],
+      filter:  ['blur(6px)', 'blur(0px)'],
+      x:       [-6, 0],
+      y:       [-4, 0]
+    },
+    {
+      duration: 0.22,
+      delay:    stagger(0.032),
+      easing:   [0.1, 0.55, 0.2, 1]
+    }
+  );
+}
 
 // H1 lines stagger in with blur + slide
 animate('.h1-line',
