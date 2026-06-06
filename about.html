@@ -382,15 +382,6 @@
     gap: 2.5rem; margin-bottom: 3rem;
     padding-bottom: 3rem; border-bottom: 1px solid #141414;
   }
-  .footer-logo {
-    text-decoration: none;
-    display: block;
-    margin-bottom: 1rem;
-  }
-  .footer-logo img {
-    height: 160px;
-    width: auto;
-  }
   .footer-brand-desc { font-size: 0.82rem; color: #444; line-height: 1.8; margin-bottom: 1.5rem; }
   .footer-col-title {
     font-family: 'Oswald', sans-serif;
@@ -470,8 +461,11 @@
     .nav-btn { display: none; }
     .mobile-cta-bar { display: block; }
     body { padding-bottom: 56px; }
-    .page-hero { padding: 7rem 5% 3.5rem; }
-    .section { padding: 4.5rem 5%; }
+    nav { height: 72px; }
+    .nav-logo img { height: 58px; }
+    .mobile-nav { top: 72px; }
+    .page-hero { padding: 6.5rem 5% 3.5rem; }
+    .section { padding: 4rem 5%; }
     .commitment-band { padding: 4rem 5%; }
     .cta-section { padding: 4rem 5%; }
     .story-layout { grid-template-columns: 1fr; }
@@ -483,10 +477,13 @@
     .cta-section { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 580px) {
-    .page-hero { padding: 6rem 5% 2.5rem; }
-    .section { padding: 3.5rem 5%; }
-    .commitment-band { padding: 3rem 5%; }
-    .cta-section { padding: 3rem 5%; }
+    nav { height: 64px; }
+    .nav-logo img { height: 50px; }
+    .mobile-nav { top: 64px; }
+    .page-hero { padding: 5.5rem 5% 2.5rem; }
+    .section { padding: 3rem 5%; }
+    .commitment-band { padding: 2.5rem 5%; }
+    .cta-section { padding: 2.5rem 5%; }
     .page-title { font-size: clamp(2.5rem, 12vw, 4rem); }
     .sec-title { font-size: clamp(2rem, 10vw, 3rem); }
   }
@@ -698,7 +695,6 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Vanguard Pavement Solutions"></a>
       <p class="footer-brand-desc">Professional pavement marking and seal coating for parking lots and commercial facilities across Tampa Bay. Sharp lines, lasting results, every time.</p>
       <div>
         <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:8635284936">(863) 528-4936</a></div>

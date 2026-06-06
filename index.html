@@ -1033,15 +1033,6 @@
     padding-bottom: 3rem;
     border-bottom: 1px solid #141414;
   }
-  .footer-logo {
-    text-decoration: none;
-    display: block;
-    margin-bottom: 1rem;
-  }
-  .footer-logo img {
-    height: 160px;
-    width: auto;
-  }
   .footer-brand-desc {
     font-size: 0.82rem;
     color: #555;
@@ -1212,6 +1203,27 @@
   .reveal-d3 { transition-delay: 0.3s; }
   .reveal-d4 { transition-delay: 0.4s; }
 
+  /* ── CONTACT DIRECTIONAL REVEAL ── */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-left.in-view  { opacity: 1; transform: translateX(0); }
+  .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-right { transition-delay: 0.1s; }
+
+  /* Contact info item hover nudge */
+  .ci { transition: transform 0.25s ease; }
+  @media (hover: hover) {
+    .ci:hover { transform: translateX(5px); }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     #hero {
@@ -1250,36 +1262,51 @@
     .section { padding: 5rem 5%; }
     .testimonials-inner { padding: 5rem 5%; }
   }
-  @media (max-width: 580px) {
+  /* Hamburger nav kicks in at tablet width */
+  @media (max-width: 768px) {
     .nav-links { display: none; }
     .nav-btn { display: none; }
     .hamburger { display: flex; }
+    nav { height: 72px; }
+    .nav-logo img { height: 58px; }
+    #hero { padding-top: 72px; }
+    .road-anim { top: 72px; }
+    .mobile-nav { top: 72px; }
+  }
+  @media (max-width: 580px) {
+    nav { height: 64px; }
+    .nav-logo img { height: 50px; }
+    #hero { padding-top: 64px; clip-path: none; }
+    .road-anim { top: 64px; }
+    .mobile-nav { top: 64px; }
     .mobile-cta-bar { display: block; }
-    body { padding-bottom: 54px; }
+    body { padding-bottom: 56px; }
     .back-top { bottom: 5.5rem; }
-    .section { padding: 3.5rem 5%; }
-    #services { padding: 3.5rem 5%; }
-    .testimonials-inner { padding: 3.5rem 5%; }
-    h1 { font-size: clamp(3rem, 12vw, 5rem); }
+    .hero-left { padding: 3rem 5% 4.5rem; }
+    .section { padding: 3rem 5%; }
+    #services { padding: 3rem 5%; }
+    .testimonials-inner { padding: 3rem 5%; }
+    h1 { font-size: clamp(2.8rem, 11vw, 4.5rem); }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-band { margin-top: 0; padding-top: 3.5rem; }
     .services-bento { grid-template-columns: 1fr; }
     .svc-featured { grid-column: span 1; grid-template-columns: 1fr; }
     .svc-featured-icon { display: none; }
     .footer-grid { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
-    #process { clip-path: none; margin: 0; padding: 4rem 5%; }
-    #hero { clip-path: none; }
-    .stats-band { margin-top: 0; padding-top: 4rem; }
+    #process { clip-path: none; margin: 0; padding: 3.5rem 5%; }
     .why-card { padding: 1.6rem 1.4rem; }
     .why-card-num { display: none; }
     .areas-map { height: 240px; }
     .city-grid { grid-template-columns: 1fr 1fr; }
+    /* Prevent iOS auto-zoom on form focus */
+    .fg input, .fg select, .fg textarea { font-size: 1rem; }
   }
   @media (max-width: 480px) {
     .city-grid { grid-template-columns: 1fr; }
     .areas-map { display: none; }
-    .section { padding: 3rem 5%; }
-    #services { padding: 3rem 5%; }
+    .section { padding: 2.5rem 5%; }
+    #services { padding: 2.5rem 5%; }
   }
 
   .testimonials-inner { background: var(--black); padding: 6rem 7%; }
@@ -1771,11 +1798,23 @@
   .nav-logo img { transition: filter 0.35s; }
   .nav-logo:hover img { filter: drop-shadow(0 0 16px rgba(245,196,0,0.42)); }
 
+  /* ── HERO CONTENT FALLBACK ── */
+  /* If Motion One CDN fails, reveal hero content via CSS after 2s */
+  @keyframes hero-fallback { from { opacity: 0; } to { opacity: 1; } }
+  .hero-tag    { animation: hero-fallback 0.6s ease forwards 2s; }
+  .h1-line     { animation: hero-fallback 0.7s ease forwards 2.1s; }
+  .hero-desc   { animation: hero-fallback 0.6s ease forwards 2.3s; }
+  .hero-actions{ animation: hero-fallback 0.6s ease forwards 2.4s; }
+  .hero-phone  { animation: hero-fallback 0.6s ease forwards 2.5s; }
+
   /* ── REDUCED MOTION SAFETY ── */
   @media (prefers-reduced-motion: reduce) {
     #hero::before, .hazard, .rs { animation: none !important; }
     .reveal-wipe { clip-path: none !important; transition: none !important; }
     .process-anim { opacity: 1 !important; transform: none !important; }
+    .hero-tag, .h1-line, .hero-desc, .hero-actions, .hero-phone {
+      opacity: 1 !important; animation: none !important;
+    }
   }
 </style>
 </head>
@@ -2191,10 +2230,10 @@
   <p class="sec-label">Get In Touch</p>
   <h2 class="sec-title reveal-wipe">Request a Quote</h2>
   <div class="contact-wrap">
-    <div class="contact-deco">
+    <div class="contact-deco reveal-left">
       <div class="contact-v">V</div>
       <p class="sec-sub" style="margin-bottom:2rem;">Reach out and we'll get back to you with a free estimate. No pressure, no obligation.</p>
-      <div class="contact-info reveal">
+      <div class="contact-info">
         <div class="ci">
           <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
           <div>
@@ -2226,7 +2265,7 @@
       </div>
     </div>
     <form
-      class="contact-form reveal"
+      class="contact-form reveal-right"
       method="POST"
       action="/"
       name="contact"
@@ -2284,7 +2323,6 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="Vanguard Pavement Solutions"></a>
       <p class="footer-brand-desc">Professional pavement marking and seal coating for parking lots and commercial facilities across Tampa Bay. Sharp lines, lasting results, every time.</p>
       <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
         <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:8635284936">(863) 528-4936</a></div>
@@ -2401,7 +2439,7 @@ const revealObs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); }
   });
 }, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
 
 // Section title wipe reveal (.reveal-wipe elements)
 const wipeObs = new IntersectionObserver((entries) => {
@@ -2493,8 +2531,28 @@ document.getElementById('quoteForm').addEventListener('submit', async (e) => {
 });
 </script>
 
+<script>
+// Safety net: if Motion One CDN fails to load, reveal hero after 1.8s
+(function() {
+  var heroSels = '.hero-tag,.h1-line,.hero-desc,.hero-actions,.hero-phone';
+  setTimeout(function() {
+    document.querySelectorAll(heroSels).forEach(function(el) {
+      if (parseFloat(window.getComputedStyle(el).opacity) < 0.5) {
+        el.style.cssText += ';transition:opacity 0.6s ease;opacity:1;animation:none;';
+      }
+    });
+  }, 1800);
+})();
+</script>
+
 <script type="module">
 import { animate, stagger, inView } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
+
+// Cancel CSS fallback animations — Motion One is taking over
+document.querySelectorAll('.hero-tag,.h1-line,.hero-desc,.hero-actions,.hero-phone').forEach(function(el) {
+  el.style.animation = 'none';
+  el.style.opacity = '0';
+});
 
 // Paint sprayer effect — split tag line into chars, spray left-to-right
 const heroTag = document.querySelector('.hero-tag');
@@ -2521,6 +2579,22 @@ animate('.h1-line',
 animate('.hero-desc',   { opacity: [0, 1], y: [20, 0] }, { duration: 0.6,  delay: 0.65, easing: [0.25, 0.1, 0.25, 1] });
 animate('.hero-actions',{ opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.82, easing: [0.25, 0.1, 0.25, 1] });
 animate('.hero-phone',  { opacity: [0, 1], y: [16, 0] }, { duration: 0.5,  delay: 0.97, easing: [0.25, 0.1, 0.25, 1] });
+
+// Contact section — slide in from left/right when scrolled into view
+inView('#contact', () => {
+  const deco = document.querySelector('.contact-deco');
+  const form = document.querySelector('.contact-form');
+  if (deco) {
+    deco.classList.remove('reveal-left');
+    deco.style.cssText += ';opacity:0;transform:translateX(-50px)';
+    animate(deco, { opacity: [0, 1], x: [-50, 0] }, { duration: 0.6, easing: [0.25, 0.1, 0.25, 1] });
+  }
+  if (form) {
+    form.classList.remove('reveal-right');
+    form.style.cssText += ';opacity:0;transform:translateX(50px)';
+    animate(form, { opacity: [0, 1], x: [50, 0] }, { duration: 0.6, delay: 0.1, easing: [0.25, 0.1, 0.25, 1] });
+  }
+}, { amount: 0.2 });
 
 // Process steps — sequential reveal when section scrolls into view
 inView('#process', () => {
