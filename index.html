@@ -1203,6 +1203,27 @@
   .reveal-d3 { transition-delay: 0.3s; }
   .reveal-d4 { transition-delay: 0.4s; }
 
+  /* ── CONTACT DIRECTIONAL REVEAL ── */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal-left.in-view  { opacity: 1; transform: translateX(0); }
+  .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+  .reveal-right { transition-delay: 0.1s; }
+
+  /* Contact info item hover nudge */
+  .ci { transition: transform 0.25s ease; }
+  @media (hover: hover) {
+    .ci:hover { transform: translateX(5px); }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     #hero {
@@ -2209,10 +2230,10 @@
   <p class="sec-label">Get In Touch</p>
   <h2 class="sec-title reveal-wipe">Request a Quote</h2>
   <div class="contact-wrap">
-    <div class="contact-deco">
+    <div class="contact-deco reveal-left">
       <div class="contact-v">V</div>
       <p class="sec-sub" style="margin-bottom:2rem;">Reach out and we'll get back to you with a free estimate. No pressure, no obligation.</p>
-      <div class="contact-info reveal">
+      <div class="contact-info">
         <div class="ci">
           <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
           <div>
@@ -2244,7 +2265,7 @@
       </div>
     </div>
     <form
-      class="contact-form reveal"
+      class="contact-form reveal-right"
       method="POST"
       action="/"
       name="contact"
@@ -2418,7 +2439,7 @@ const revealObs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); }
   });
 }, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
 
 // Section title wipe reveal (.reveal-wipe elements)
 const wipeObs = new IntersectionObserver((entries) => {
@@ -2558,6 +2579,22 @@ animate('.h1-line',
 animate('.hero-desc',   { opacity: [0, 1], y: [20, 0] }, { duration: 0.6,  delay: 0.65, easing: [0.25, 0.1, 0.25, 1] });
 animate('.hero-actions',{ opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.82, easing: [0.25, 0.1, 0.25, 1] });
 animate('.hero-phone',  { opacity: [0, 1], y: [16, 0] }, { duration: 0.5,  delay: 0.97, easing: [0.25, 0.1, 0.25, 1] });
+
+// Contact section — slide in from left/right when scrolled into view
+inView('#contact', () => {
+  const deco = document.querySelector('.contact-deco');
+  const form = document.querySelector('.contact-form');
+  if (deco) {
+    deco.classList.remove('reveal-left');
+    deco.style.cssText += ';opacity:0;transform:translateX(-50px)';
+    animate(deco, { opacity: [0, 1], x: [-50, 0] }, { duration: 0.6, easing: [0.25, 0.1, 0.25, 1] });
+  }
+  if (form) {
+    form.classList.remove('reveal-right');
+    form.style.cssText += ';opacity:0;transform:translateX(50px)';
+    animate(form, { opacity: [0, 1], x: [50, 0] }, { duration: 0.6, delay: 0.1, easing: [0.25, 0.1, 0.25, 1] });
+  }
+}, { amount: 0.2 });
 
 // Process steps — sequential reveal when section scrolls into view
 inView('#process', () => {
