@@ -723,14 +723,19 @@
   .mobile-cta:hover { background: var(--yellow-bright); }
   @media (max-width: 580px) {
     .mobile-cta { display: block; }
-    body { padding-bottom: 54px; }
+    body { padding-bottom: 56px; }
+    /* Shrink header on phones */
+    header { height: 68px; }
+    .header-logo img { height: 52px; }
+    /* iOS auto-zoom prevention — inputs must be >= 16px */
+    .fg input, .fg select, .fg textarea { font-size: 1rem; }
     .top-bar { padding: 0.5rem 5%; gap: 0.3rem; }
     .top-bar-msg { display: none; }
-    .services-section { padding: 3.5rem 5%; }
+    .services-section { padding: 3rem 5%; }
     .trust-strip { padding: 1.2rem 5%; }
     .trust-strip-grid { gap: 0.6rem 1.2rem; }
-    .proof-band { padding: 3rem 5%; }
-    .bottom-cta { padding: 3rem 5%; flex-direction: column; align-items: flex-start; }
+    .proof-band { padding: 2.5rem 5%; }
+    .bottom-cta { padding: 2.5rem 5%; flex-direction: column; align-items: flex-start; }
     .bottom-cta-right { align-items: flex-start; }
     footer { padding: 2rem 5%; }
     .footer-inner { flex-direction: column; gap: 0.5rem; }

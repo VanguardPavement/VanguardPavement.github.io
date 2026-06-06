@@ -1250,36 +1250,52 @@
     .section { padding: 5rem 5%; }
     .testimonials-inner { padding: 5rem 5%; }
   }
-  @media (max-width: 580px) {
+  /* Hamburger nav kicks in at tablet width */
+  @media (max-width: 768px) {
     .nav-links { display: none; }
     .nav-btn { display: none; }
     .hamburger { display: flex; }
+    nav { height: 72px; }
+    .nav-logo img { height: 58px; }
+    #hero { padding-top: 72px; }
+    .road-anim { top: 72px; }
+    .mobile-nav { top: 72px; }
+  }
+  @media (max-width: 580px) {
+    nav { height: 64px; }
+    .nav-logo img { height: 50px; }
+    #hero { padding-top: 64px; clip-path: none; }
+    .road-anim { top: 64px; }
+    .mobile-nav { top: 64px; }
     .mobile-cta-bar { display: block; }
-    body { padding-bottom: 54px; }
+    body { padding-bottom: 56px; }
     .back-top { bottom: 5.5rem; }
-    .section { padding: 3.5rem 5%; }
-    #services { padding: 3.5rem 5%; }
-    .testimonials-inner { padding: 3.5rem 5%; }
-    h1 { font-size: clamp(3rem, 12vw, 5rem); }
+    .hero-left { padding: 3rem 5% 4.5rem; }
+    .section { padding: 3rem 5%; }
+    #services { padding: 3rem 5%; }
+    .testimonials-inner { padding: 3rem 5%; }
+    h1 { font-size: clamp(2.8rem, 11vw, 4.5rem); }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-band { margin-top: 0; padding-top: 3.5rem; }
     .services-bento { grid-template-columns: 1fr; }
     .svc-featured { grid-column: span 1; grid-template-columns: 1fr; }
     .svc-featured-icon { display: none; }
     .footer-grid { grid-template-columns: 1fr; }
+    .footer-logo img { height: 96px; }
     .reviews-grid { grid-template-columns: 1fr; }
-    #process { clip-path: none; margin: 0; padding: 4rem 5%; }
-    #hero { clip-path: none; }
-    .stats-band { margin-top: 0; padding-top: 4rem; }
+    #process { clip-path: none; margin: 0; padding: 3.5rem 5%; }
     .why-card { padding: 1.6rem 1.4rem; }
     .why-card-num { display: none; }
     .areas-map { height: 240px; }
     .city-grid { grid-template-columns: 1fr 1fr; }
+    /* Prevent iOS auto-zoom on form focus */
+    .fg input, .fg select, .fg textarea { font-size: 1rem; }
   }
   @media (max-width: 480px) {
     .city-grid { grid-template-columns: 1fr; }
     .areas-map { display: none; }
-    .section { padding: 3rem 5%; }
-    #services { padding: 3rem 5%; }
+    .section { padding: 2.5rem 5%; }
+    #services { padding: 2.5rem 5%; }
   }
 
   .testimonials-inner { background: var(--black); padding: 6rem 7%; }
