@@ -1787,11 +1787,23 @@
   .nav-logo img { transition: filter 0.35s; }
   .nav-logo:hover img { filter: drop-shadow(0 0 16px rgba(245,196,0,0.42)); }
 
+  /* ── HERO CONTENT FALLBACK ── */
+  /* If Motion One CDN fails, reveal hero content via CSS after 2s */
+  @keyframes hero-fallback { from { opacity: 0; } to { opacity: 1; } }
+  .hero-tag    { animation: hero-fallback 0.6s ease forwards 2s; }
+  .h1-line     { animation: hero-fallback 0.7s ease forwards 2.1s; }
+  .hero-desc   { animation: hero-fallback 0.6s ease forwards 2.3s; }
+  .hero-actions{ animation: hero-fallback 0.6s ease forwards 2.4s; }
+  .hero-phone  { animation: hero-fallback 0.6s ease forwards 2.5s; }
+
   /* ── REDUCED MOTION SAFETY ── */
   @media (prefers-reduced-motion: reduce) {
     #hero::before, .hazard, .rs { animation: none !important; }
     .reveal-wipe { clip-path: none !important; transition: none !important; }
     .process-anim { opacity: 1 !important; transform: none !important; }
+    .hero-tag, .h1-line, .hero-desc, .hero-actions, .hero-phone {
+      opacity: 1 !important; animation: none !important;
+    }
   }
 </style>
 </head>
@@ -2509,8 +2521,28 @@ document.getElementById('quoteForm').addEventListener('submit', async (e) => {
 });
 </script>
 
+<script>
+// Safety net: if Motion One CDN fails to load, reveal hero after 1.8s
+(function() {
+  var heroSels = '.hero-tag,.h1-line,.hero-desc,.hero-actions,.hero-phone';
+  setTimeout(function() {
+    document.querySelectorAll(heroSels).forEach(function(el) {
+      if (parseFloat(window.getComputedStyle(el).opacity) < 0.5) {
+        el.style.cssText += ';transition:opacity 0.6s ease;opacity:1;animation:none;';
+      }
+    });
+  }, 1800);
+})();
+</script>
+
 <script type="module">
 import { animate, stagger, inView } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
+
+// Cancel CSS fallback animations — Motion One is taking over
+document.querySelectorAll('.hero-tag,.h1-line,.hero-desc,.hero-actions,.hero-phone').forEach(function(el) {
+  el.style.animation = 'none';
+  el.style.opacity = '0';
+});
 
 // Paint sprayer effect — split tag line into chars, spray left-to-right
 const heroTag = document.querySelector('.hero-tag');
