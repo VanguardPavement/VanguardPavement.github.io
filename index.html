@@ -154,7 +154,7 @@
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     display: inline-block;
   }
-  .nav-btn:hover { background: var(--yellow-bright); transform: translateY(-1px); }
+  .nav-btn:hover { background: var(--yellow-bright); transform: translateY(-1px); box-shadow: 0 0 22px rgba(245,196,0,0.38); }
   .hamburger {
     display: none;
     flex-direction: column;
@@ -459,7 +459,7 @@
     transition: background 0.2s, transform 0.15s;
     display: inline-block;
   }
-  .btn-y:hover { background: var(--yellow-bright); transform: translateY(-2px); }
+  .btn-y:hover { background: var(--yellow-bright); transform: translateY(-2px); box-shadow: 0 0 30px rgba(245,196,0,0.4), 0 6px 24px rgba(245,196,0,0.15); }
   .btn-o {
     font-family: 'Oswald', sans-serif;
     font-size: 0.9rem;
@@ -997,7 +997,7 @@
     transition: background 0.2s;
     margin-top: 0.5rem;
   }
-  .submit-btn:hover { background: var(--yellow-bright); }
+  .submit-btn:hover { background: var(--yellow-bright); box-shadow: 0 0 26px rgba(245,196,0,0.38); }
   .form-success {
     display: none;
     background: #0d2e0d;
@@ -1703,9 +1703,107 @@
     border-bottom-color: rgba(245,196,0,0.18);
     background: rgba(8,8,8,0.99);
   }
+
+  /* ── HERO FILM GRAIN ── */
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    animation: grain-shift 0.65s steps(1) infinite;
+  }
+  @keyframes grain-shift {
+    0%  { background-position:   0%   0%; }
+    14% { background-position:  -5% -10%; }
+    28% { background-position: -15%   5%; }
+    43% { background-position:   7% -25%; }
+    57% { background-position:  -5%  25%; }
+    71% { background-position:  15%   0%; }
+    85% { background-position:   3%  35%; }
+  }
+
+  /* ── ANIMATED HAZARD STRIPE ── */
+  .hazard { animation: hazard-march 1.5s linear infinite; }
+  @keyframes hazard-march {
+    from { background-position-x: 0; }
+    to   { background-position-x: 52px; }
+  }
+
+  /* ── FLOATING ROAD SYMBOLS ── */
+  @keyframes fl1 { 0%,100%{transform:rotate(-8deg)  translateY(0px)} 50%{transform:rotate(-8deg)  translateY(-16px)} }
+  @keyframes fl2 { 0%,100%{transform:rotate(12deg)  translateY(0px)} 50%{transform:rotate(12deg)  translateY(-14px)} }
+  @keyframes fl3 { 0%,100%{transform:rotate(5deg)   translateY(0px)} 50%{transform:rotate(5deg)   translateY(-18px)} }
+  @keyframes fl4 { 0%,100%{transform:rotate(-10deg) translateY(0px)} 50%{transform:rotate(-10deg) translateY(-12px)} }
+  @keyframes fl5 { 0%,100%{transform:rotate(8deg)   translateY(0px)} 50%{transform:rotate(8deg)   translateY(-16px)} }
+  @keyframes fl6 { 0%,100%{transform:rotate(-5deg)  translateY(0px)} 50%{transform:rotate(-5deg)  translateY(-14px)} }
+  @keyframes fl7 { 0%,100%{transform:rotate(6deg)   translateY(0px)} 50%{transform:rotate(6deg)   translateY(-12px)} }
+  .rs:nth-child(1){animation:fl1 7s ease-in-out 0s infinite;}
+  .rs:nth-child(2){animation:fl2 9s ease-in-out 1.5s infinite;}
+  .rs:nth-child(3){animation:fl3 8s ease-in-out 3s infinite;}
+  .rs:nth-child(4){animation:fl4 10s ease-in-out 0.7s infinite;}
+  .rs:nth-child(5){animation:fl5 7.5s ease-in-out 2s infinite;}
+  .rs:nth-child(6){animation:fl6 9.5s ease-in-out 1s infinite;}
+  .rs:nth-child(7){animation:fl7 8.5s ease-in-out 2.5s infinite;}
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor, #cursor-ring { display: none; pointer-events: none; position: fixed; top: 0; left: 0; z-index: 10001; transform: translate(-50%,-50%); }
+  #cursor {
+    width: 9px; height: 9px;
+    background: var(--yellow);
+    clip-path: polygon(2px 0%, 100% 0%, calc(100% - 2px) 100%, 0% 100%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s;
+    z-index: 10002;
+  }
+  #cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(245,196,0,0.32);
+    border-radius: 50%;
+    transition: width 0.32s ease, height 0.32s ease, border-color 0.25s;
+  }
+  #cursor.hov  { width: 18px; height: 18px; }
+  #cursor-ring.hov { width: 54px; height: 54px; border-color: rgba(245,196,0,0.62); }
+  @media (pointer: fine) {
+    body, a, button, [role="button"], .faq-q, select { cursor: none !important; }
+    #cursor, #cursor-ring { display: block; }
+  }
+
+  /* ── SECTION TITLE WIPE REVEAL ── */
+  .reveal-wipe {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transition: clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.06s;
+    will-change: clip-path;
+  }
+  .reveal-wipe.in-view { clip-path: polygon(0 0, 110% 0, 110% 100%, 0 100%); }
+
+  /* ── PROCESS INITIAL STATE ── */
+  .process-anim { opacity: 0; transform: translateY(28px); }
+
+  /* ── CARD 3D TILT SETUP ── */
+  .svc, .why-card, .review-card { will-change: transform; transform-style: flat; }
+
+  /* ── NAV ACTIVE SECTION LINK ── */
+  .nav-links a.active { color: var(--yellow); }
+
+  /* ── NAV LOGO HOVER GLOW ── */
+  .nav-logo img { transition: filter 0.35s; }
+  .nav-logo:hover img { filter: drop-shadow(0 0 16px rgba(245,196,0,0.42)); }
+
+  /* ── REDUCED MOTION SAFETY ── */
+  @media (prefers-reduced-motion: reduce) {
+    #hero::before, .hazard, .rs { animation: none !important; }
+    .reveal-wipe { clip-path: none !important; transition: none !important; }
+    .process-anim { opacity: 1 !important; transform: none !important; }
+  }
 </style>
 </head>
 <body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
 <div id="scrollProgress"></div>
 
@@ -1753,13 +1851,13 @@
   <div class="road-anim"></div>
   <!-- Decorative pavement marking symbols -->
   <div class="road-symbols" aria-hidden="true">
-    <i class="rs fa-solid fa-arrow-up"        style="font-size:7rem;  top:10%;   left:4%;   transform:rotate(-8deg)"></i>
-    <i class="rs fa-solid fa-arrow-turn-right" style="font-size:5rem;  top:58%;   left:16%;  transform:rotate(12deg)"></i>
-    <i class="rs fa-solid fa-wheelchair"       style="font-size:5.5rem;bottom:12%;left:6%;   transform:rotate(5deg)"></i>
-    <i class="rs fa-solid fa-person-walking"   style="font-size:4.5rem;top:32%;   left:36%;  transform:rotate(-10deg)"></i>
-    <i class="rs fa-solid fa-square-parking"   style="font-size:5rem;  top:18%;   right:8%;  transform:rotate(8deg)"></i>
-    <i class="rs fa-solid fa-road"             style="font-size:4.5rem;top:52%;   right:18%; transform:rotate(-5deg)"></i>
-    <i class="rs fa-solid fa-car"              style="font-size:4rem;  bottom:18%;right:12%; transform:rotate(6deg)"></i>
+    <i class="rs fa-solid fa-arrow-up"        style="font-size:7rem;  top:10%;   left:4%;"></i>
+    <i class="rs fa-solid fa-arrow-turn-right" style="font-size:5rem;  top:58%;   left:16%;"></i>
+    <i class="rs fa-solid fa-wheelchair"       style="font-size:5.5rem;bottom:12%;left:6%;"></i>
+    <i class="rs fa-solid fa-person-walking"   style="font-size:4.5rem;top:32%;   left:36%;"></i>
+    <i class="rs fa-solid fa-square-parking"   style="font-size:5rem;  top:18%;   right:8%;"></i>
+    <i class="rs fa-solid fa-road"             style="font-size:4.5rem;top:52%;   right:18%;"></i>
+    <i class="rs fa-solid fa-car"              style="font-size:4rem;  bottom:18%;right:12%;"></i>
   </div>
   <div class="hero-left">
     <p class="hero-tag">Tampa Bay &amp; Central Florida · Licensed &amp; Insured</p>
@@ -1852,7 +1950,7 @@
   <div class="services-header">
     <div class="services-header-left">
       <p class="sec-label">What We Do</p>
-      <h2 class="sec-title">Our Services</h2>
+      <h2 class="sec-title reveal-wipe">Our Services</h2>
     </div>
     <p class="services-header-right">Focused, professional pavement marking and maintenance services for parking lots, roads, and facilities. Every line sharp, every seal protective.</p>
   </div>
@@ -1909,26 +2007,26 @@
   <div class="process-band-header">
     <div>
       <p class="sec-label">How It Works</p>
-      <h2 class="sec-title">Simple Process</h2>
+      <h2 class="sec-title reveal-wipe">Simple Process</h2>
     </div>
     <p class="process-band-sub">Most jobs quoted within 24 hours and scheduled the same week. We show up on time and leave your lot looking brand new.</p>
   </div>
   <div class="process-steps">
-    <div class="process-step reveal">
+    <div class="process-step process-anim">
       <div class="process-step-num">01</div>
       <div class="process-step-icon"><i class="fa-solid fa-phone"></i></div>
       <div class="process-step-title">Request a Quote</div>
       <p class="process-step-desc">Call, text, or fill out our form. We'll assess your project and respond with a free, no-obligation estimate fast.</p>
     </div>
-    <div class="process-arrow reveal reveal-d1"><i class="fa-solid fa-chevron-right"></i></div>
-    <div class="process-step reveal reveal-d1">
+    <div class="process-arrow process-anim"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="process-step process-anim">
       <div class="process-step-num">02</div>
       <div class="process-step-icon"><i class="fa-solid fa-calendar-check"></i></div>
       <div class="process-step-title">Schedule the Job</div>
       <p class="process-step-desc">We work around your schedule — weekdays, weekends, off-hours. Same-week slots available for most projects.</p>
     </div>
-    <div class="process-arrow reveal reveal-d2"><i class="fa-solid fa-chevron-right"></i></div>
-    <div class="process-step reveal reveal-d2">
+    <div class="process-arrow process-anim"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="process-step process-anim">
       <div class="process-step-num">03</div>
       <div class="process-step-icon"><i class="fa-solid fa-check-double"></i></div>
       <div class="process-step-title">Done Right</div>
@@ -1958,7 +2056,7 @@
 <section id="testimonials">
   <div class="testimonials-inner">
     <p class="sec-label">What Clients Say</p>
-    <h2 class="sec-title">Our Reputation</h2>
+    <h2 class="sec-title reveal-wipe">Our Reputation</h2>
     <div class="reviews-grid">
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
@@ -1988,7 +2086,7 @@
 <!-- WHY VANGUARD -->
 <section id="why" class="section">
   <p class="sec-label">The Difference</p>
-  <h2 class="sec-title">Why Property Managers Choose Vanguard</h2>
+  <h2 class="sec-title reveal-wipe">Why Property Managers Choose Vanguard</h2>
   <p class="sec-sub">We're built for commercial work. Licensed, insured, and equipped with professional equipment that delivers results built to last under Florida sun.</p>
   <div class="why-grid">
     <div class="why-card reveal">
@@ -2023,7 +2121,7 @@
   <div class="areas-layout">
     <div class="areas-copy">
       <p class="sec-label">Where We Work</p>
-      <h2 class="sec-title">Service Areas</h2>
+      <h2 class="sec-title reveal-wipe">Service Areas</h2>
       <p class="sec-sub">Based in Tampa Bay, we serve commercial properties across the greater Tampa Bay area and Central Florida. Not sure if we cover your location? Call us — we travel for the right job.</p>
       <div class="city-grid">
         <div class="city-item"><i class="fa-solid fa-circle-dot"></i>Tampa</div>
@@ -2071,7 +2169,7 @@
     </div>
     <div class="faq-questions-col">
       <p class="sec-label">FAQ</p>
-      <h2 class="sec-title" style="margin-bottom:2.5rem;">Common Questions</h2>
+      <h2 class="sec-title reveal-wipe" style="margin-bottom:2.5rem;">Common Questions</h2>
       <div class="faq-list">
         <div class="faq-item">
           <div class="faq-q"><span>How long does parking lot striping take?</span><i class="fa-solid fa-plus faq-q-icon"></i></div>
@@ -2115,7 +2213,7 @@
 <!-- CONTACT -->
 <section id="contact" class="section">
   <p class="sec-label">Get In Touch</p>
-  <h2 class="sec-title">Request a Quote</h2>
+  <h2 class="sec-title reveal-wipe">Request a Quote</h2>
   <div class="contact-wrap">
     <div class="contact-deco">
       <div class="contact-v">V</div>
@@ -2321,13 +2419,21 @@ window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 500);
 }, { passive: true });
 
-// Scroll reveal
+// Scroll reveal (.reveal elements)
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in-view'); revealObs.unobserve(e.target); }
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Section title wipe reveal (.reveal-wipe elements)
+const wipeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); wipeObs.unobserve(e.target); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal-wipe').forEach(el => wipeObs.observe(el));
 
 // Animated counter
 const counterObs = new IntersectionObserver((entries) => {
@@ -2346,6 +2452,69 @@ const counterObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-target]').forEach(c => counterObs.observe(c));
+
+// Active nav link — highlight current section
+const navSectionIds = ['services', 'why', 'areas', 'faq', 'contact'];
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.25, rootMargin: '-80px 0px -45% 0px' });
+navSectionIds.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) sectionObs.observe(el);
+});
+
+// 3D card tilt on hover
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.querySelectorAll('.svc, .why-card, .review-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.08s ease, background 0.3s';
+    });
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateZ(6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.55s ease, background 0.3s';
+      card.style.transform = '';
+    });
+  });
+}
+
+// Custom cursor (desktop only)
+const cur = document.getElementById('cursor');
+const curRing = document.getElementById('cursor-ring');
+if (cur && window.matchMedia('(pointer: fine)').matches) {
+  let cx = -200, cy = -200, rx = -200, ry = -200;
+  document.addEventListener('mousemove', (e) => {
+    cx = e.clientX; cy = e.clientY;
+    cur.style.left = cx + 'px';
+    cur.style.top  = cy + 'px';
+  }, { passive: true });
+  (function lagRing() {
+    rx += (cx - rx) * 0.13;
+    ry += (cy - ry) * 0.13;
+    curRing.style.left = rx + 'px';
+    curRing.style.top  = ry + 'px';
+    requestAnimationFrame(lagRing);
+  })();
+  const hoverEls = document.querySelectorAll('a, button, .faq-q, .svc, .why-card, .review-card, select');
+  hoverEls.forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('hov'); curRing.classList.add('hov'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('hov'); curRing.classList.remove('hov'); });
+  });
+  document.addEventListener('mouseleave', () => { cur.style.opacity='0'; curRing.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { cur.style.opacity='1'; curRing.style.opacity='1'; });
+}
 
 // Form submission
 document.getElementById('quoteForm').addEventListener('submit', async (e) => {
@@ -2375,7 +2544,7 @@ document.getElementById('quoteForm').addEventListener('submit', async (e) => {
 </script>
 
 <script type="module">
-import { animate, stagger } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
+import { animate, stagger, inView } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
 
 // Paint sprayer effect — split tag line into chars, spray left-to-right
 const heroTag = document.querySelector('.hero-tag');
@@ -2387,18 +2556,8 @@ if (heroTag) {
   heroTag.style.opacity = '1';
 
   animate('.spray-char',
-    {
-      opacity: [0, 1],
-      scale:   [1.6, 1],
-      filter:  ['blur(6px)', 'blur(0px)'],
-      x:       [-6, 0],
-      y:       [-4, 0]
-    },
-    {
-      duration: 0.22,
-      delay:    stagger(0.032),
-      easing:   [0.1, 0.55, 0.2, 1]
-    }
+    { opacity: [0, 1], scale: [1.6, 1], filter: ['blur(6px)', 'blur(0px)'], x: [-6, 0], y: [-4, 0] },
+    { duration: 0.22, delay: stagger(0.032), easing: [0.1, 0.55, 0.2, 1] }
   );
 }
 
@@ -2409,18 +2568,23 @@ animate('.h1-line',
 );
 
 // Supporting elements cascade in
-animate('.hero-desc',
-  { opacity: [0, 1], y: [20, 0] },
-  { duration: 0.6, delay: 0.65, easing: [0.25, 0.1, 0.25, 1] }
-);
-animate('.hero-actions',
-  { opacity: [0, 1], y: [16, 0] },
-  { duration: 0.55, delay: 0.82, easing: [0.25, 0.1, 0.25, 1] }
-);
-animate('.hero-phone',
-  { opacity: [0, 1], y: [16, 0] },
-  { duration: 0.5, delay: 0.97, easing: [0.25, 0.1, 0.25, 1] }
-);
+animate('.hero-desc',   { opacity: [0, 1], y: [20, 0] }, { duration: 0.6,  delay: 0.65, easing: [0.25, 0.1, 0.25, 1] });
+animate('.hero-actions',{ opacity: [0, 1], y: [16, 0] }, { duration: 0.55, delay: 0.82, easing: [0.25, 0.1, 0.25, 1] });
+animate('.hero-phone',  { opacity: [0, 1], y: [16, 0] }, { duration: 0.5,  delay: 0.97, easing: [0.25, 0.1, 0.25, 1] });
+
+// Process steps — sequential reveal when section scrolls into view
+inView('#process', () => {
+  const steps  = document.querySelectorAll('.process-step');
+  const arrows = document.querySelectorAll('.process-arrow');
+  animate(steps,
+    { opacity: [0, 1], y: [40, 0], scale: [0.94, 1] },
+    { duration: 0.65, delay: stagger(0.22), easing: [0.16, 1, 0.3, 1] }
+  );
+  animate(arrows,
+    { opacity: [0, 1], x: [-18, 0] },
+    { duration: 0.4, delay: stagger(0.22, { start: 0.24 }), easing: [0.2, 0, 0, 1] }
+  );
+}, { amount: 0.25 });
 </script>
 </body>
 </html>
