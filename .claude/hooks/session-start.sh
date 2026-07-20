@@ -7,9 +7,11 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
 fi
 
 echo "Installing headroom-ai..."
-pip install --quiet "headroom-ai[all]"
+# --ignore-installed works around Debian system-installed packages (e.g. PyJWT)
+# that lack a RECORD file and would otherwise block the install
+pip install --quiet --ignore-installed "headroom-ai[mcp,proxy]"
 
 echo "Registering headroom MCP server..."
-headroom mcp install
+headroom mcp install --force
 
 echo "Headroom setup complete."
